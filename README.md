@@ -6,4 +6,4 @@ how to
   3. npm start
 ```
 
-![Alt text](/Screenshot.png?raw=true "Optional Title")
+![Alt text](/screenshot.png?raw=true "Optional Title")
