@@ -9,9 +9,9 @@ class Filter extends React.Component {
             value: '',
         };
     }
-    handleChange( value, name ) {
+    handleChange(value, name) {
         this.setState({ value });
-        this.props.filterList( /all/i.test(name) ? false : name );
+        this.props.filterList(/all/i.test(name) ? false : name);
     }
     render() {
         const selectorS = {
@@ -19,11 +19,13 @@ class Filter extends React.Component {
         };
         return (
             <SelectField
-                style={selectorS}
-                value={this.state.value}
-                onChange={(e,_,v) => this.handleChange(v, e.target.innerHTML)}
+              style={selectorS}
+              value={this.state.value}
+              onChange={(e, _, v) => this.handleChange(v, e.target.innerHTML)}
             >
-                {this.props.flights.map((f,i) => <MenuItem key={i} value={f.id} primaryText={f.carrier} />)}
+                {this.props.flights.map(
+                    f => <MenuItem key={f.id} value={f.id} primaryText={f.carrier} />)
+                }
                 <MenuItem value="" primaryText="All" />
             </SelectField>
         );
@@ -32,7 +34,7 @@ class Filter extends React.Component {
 
 Filter.propTypes = {
     flights: React.PropTypes.array,
-    filterList: React.PropTypes.func.isRequired
+    filterList: React.PropTypes.func.isRequired,
 };
 Filter.defaultProps = {
     flights: [],

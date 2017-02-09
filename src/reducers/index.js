@@ -13,29 +13,29 @@ const companyReducer = function companyReducer(state = defaultState, action) {
     case FILTER_COMPANIES: {
         return {
             ...state,
-            filterName: action.payload
-        }
+            filterName: action.payload,
+        };
     }
     case `${GET_COMPANIES}_FULFILLED`: {
-        let data = action.payload.data.flights;
+        const data = action.payload.data.flights;
         return {
             ...state,
             flights: data,
             isPending: false,
-        }
+        };
     }
     case `${GET_COMPANIES}_PENDING`: {
         return {
             ...state,
-            isPending: true
-        }
+            isPending: true,
+        };
     }
     case `${GET_COMPANIES}_REJECTED`: {
         return {
             ...state,
             isPending: false,
             error: action.payload.message,
-        }
+        };
     }
     default: {
         return state;

@@ -8,7 +8,7 @@ import Paper from 'material-ui/Paper';
 
 import Filter from './components/CompanyFilter';
 import CompanyList from './components/CompanyList';
-import {getCompanies, filterCompanies} from './actions';
+import { getCompanies, filterCompanies } from './actions';
 
 class App extends React.Component {
     constructor(props) {
@@ -50,9 +50,9 @@ class App extends React.Component {
         return (
             <div>
                 <Filter flights={this.getUniqCompanies()} filterList={this.props.filterCompanies} />
-                <CompanyList flights={this.props.app.flights} filter={this.props.app.filterName}/>
+                <CompanyList flights={this.props.app.flights} filter={this.props.app.filterName} />
             </div>
-        )
+        );
     }
 }
 
