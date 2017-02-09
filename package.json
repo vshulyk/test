@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --inline",
-    "lint": "node_modules/.bin/eslint src",
-    "fix": "node_modules/.bin/eslint --fix src"
+    "start": "clear && webpack-dev-server --inline",
+    "lint": "clear && node_modules/.bin/eslint src",
+    "fix": "clear && node_modules/.bin/eslint --fix src"
   },
   "repository": {
     "type": "git",
@@ -20,8 +20,14 @@
   },
   "homepage": "https://github.com/vshulyk/test#readme",
   "dependencies": {
+    "axios": "^0.15.3",
+    "material-ui": "^0.16.7",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.2",
+    "react-tap-event-plugin": "^2.0.1",
+    "redux": "^3.6.0",
+    "redux-promise-middleware": "^4.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.22.1",

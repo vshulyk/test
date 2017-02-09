@@ -16,6 +16,7 @@
         "no-underscore-dangle": 0,
         "no-return-assign": 0,
         "no-debugger": 0,
+        "one-var": 0,
         "react/no-string-refs": 0 //not ready yet :disappointed:
     },
     "env": {
