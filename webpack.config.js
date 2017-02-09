@@ -1,9 +1,9 @@
 module.exports = {
   entry: ["./src/index.js"],
   output: {
-    filename: 'bundle.js',
+    filename: 'dist/bundle.js',
   },
-  devtool: "#inline-source-map",
+  devtool: "source-map",
   module: {
    loaders: [
      {

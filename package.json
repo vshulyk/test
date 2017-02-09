@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "clear && webpack-dev-server --inline",
     "lint": "clear && node_modules/.bin/eslint src",
-    "fix": "clear && node_modules/.bin/eslint --fix src"
+    "fix": "clear && node_modules/.bin/eslint --fix src",
+    "build": "webpack -p --progress",
+    "deploy": "npm run build && surge -d carriers.surge.sh"
   },
   "repository": {
     "type": "git",
