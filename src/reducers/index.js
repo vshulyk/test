@@ -1,39 +1,41 @@
 import { combineReducers } from 'redux';
-import { GET_COMPANIES } from '../actions';
+import { GET_COMPANIES, FILTER_COMPANIES } from '../actions';
 
 const defaultState = {
     flights: [],
+    filterName: false,
     isPending: false,
-    isLoaded: false,
     error: '',
 };
 
 const companyReducer = function companyReducer(state = defaultState, action) {
     switch (action.type) {
+    case FILTER_COMPANIES: {
+        return {
+            ...state,
+            filterName: action.payload
+        }
+    }
     case `${GET_COMPANIES}_FULFILLED`: {
-        return Object.assign(
-                {},
-            {
-                flights: action.payload.data.flights,
-                isPending: false,
-                isLoaded: true,
-            },
-            );
+        let data = action.payload.data.flights;
+        return {
+            ...state,
+            flights: data,
+            isPending: false,
+        }
     }
     case `${GET_COMPANIES}_PENDING`: {
-        return Object.assign(
-                {},
-                { isPending: true },
-            );
+        return {
+            ...state,
+            isPending: true
+        }
     }
     case `${GET_COMPANIES}_REJECTED`: {
-        return Object.assign(
-                {},
-            {
-                isPending: false,
-                error: action.payload.message,
-            },
-            );
+        return {
+            ...state,
+            isPending: false,
+            error: action.payload.message,
+        }
     }
     default: {
         return state;

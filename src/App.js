@@ -7,12 +7,12 @@ import LinearProgress from 'material-ui/LinearProgress';
 import Paper from 'material-ui/Paper';
 
 import Filter from './components/CompanyFilter';
-import getCompanies from './actions';
+import CompanyList from './components/CompanyList';
+import {getCompanies, filterCompanies} from './actions';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-
         props.getCompanies();
     }
     getUniqCompanies() {
@@ -22,7 +22,7 @@ class App extends React.Component {
                 uniq[x.carrier] = true;
                 acc.push({
                     id: x.id,
-                    name: x.carrier,
+                    carrier: x.carrier,
                 });
             }
             return acc;
@@ -47,13 +47,19 @@ class App extends React.Component {
                 </Paper>
             );
         }
-        return <Filter flights={this.getUniqCompanies()} />;
+        return (
+            <div>
+                <Filter flights={this.getUniqCompanies()} filterList={this.props.filterCompanies} />
+                <CompanyList flights={this.props.app.flights} filter={this.props.app.filterName}/>
+            </div>
+        )
     }
 }
 
 App.propTypes = {
     app: React.PropTypes.object.isRequired,
     getCompanies: React.PropTypes.func.isRequired,
+    filterCompanies: React.PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -62,7 +68,7 @@ function mapStateToProps(state) {
     };
 }
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getCompanies }, dispatch);
+    return bindActionCreators({ getCompanies, filterCompanies }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

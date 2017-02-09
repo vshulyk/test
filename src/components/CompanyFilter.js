@@ -6,20 +6,25 @@ class Filter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 'All',
+            value: '',
         };
     }
-    handleChange(value) {
+    handleChange( value, name ) {
         this.setState({ value });
+        this.props.filterList( /all/i.test(name) ? false : name );
     }
     render() {
+        const selectorS = {
+            marginLeft: '1%',
+        };
         return (
             <SelectField
-              value={this.state.value}
-              onChange={(e, k, v) => this.handleChange(v)}
+                style={selectorS}
+                value={this.state.value}
+                onChange={(e,_,v) => this.handleChange(v, e.target.innerHTML)}
             >
-                {this.props.flights.map(f => <MenuItem value={f.id} primaryText={f.name} />)}
-                <MenuItem value="All" primaryText="All" />
+                {this.props.flights.map((f,i) => <MenuItem key={i} value={f.id} primaryText={f.carrier} />)}
+                <MenuItem value="" primaryText="All" />
             </SelectField>
         );
     }
@@ -27,6 +32,7 @@ class Filter extends React.Component {
 
 Filter.propTypes = {
     flights: React.PropTypes.array,
+    filterList: React.PropTypes.func.isRequired
 };
 Filter.defaultProps = {
     flights: [],
